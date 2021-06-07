@@ -138,7 +138,14 @@ class AuthChecker
     ): Login {
         $model = config('auth-checker.models.login') ?? Login::class;
         $ip = $this->request->ip();
-        $ip_insights = $this->geoIp2Client->insights($ip);
+
+        try {
+          $ip_insights = $this->geoIp2Client->insights($ip);
+        } catch (\Exception $e) {
+          $ip_insights = [];
+          Log::error('Error  laravel-auth-checker ', $err);
+        }
+
 
         $login = new $model([
             'ip_address' => $ip,
