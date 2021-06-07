@@ -17,7 +17,7 @@ use Lab404\AuthChecker\Interfaces\HasLoginsAndDevicesInterface;
 use Lab404\AuthChecker\Models\Device;
 use Lab404\AuthChecker\Models\Login;
 use GeoIp2\WebService\Client as GeoIp2Client;
-
+use Log;
 
 class AuthChecker
 {
