@@ -141,9 +141,9 @@ class AuthChecker
 
         try {
           $ip_insights = $this->geoIp2Client->insights($ip);
-        } catch (\Exception $e) {
+        } catch (\Exception $exception) {
           $ip_insights = [];
-          Log::error('laravel-auth-checker Exception:', $e);
+          Log::error($exception);
         }
 
 
