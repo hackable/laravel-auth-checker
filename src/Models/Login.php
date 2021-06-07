@@ -32,12 +32,14 @@ class Login extends Model
         'user_type' => 'string',
         'device_id' => 'integer',
         'ip_address' => 'string',
+        'ip_insights' => 'json'
     ];
     /** @var array $fillable */
     protected $fillable = [
         'user_id',
         'user_type',
         'ip_address',
+        'ip_insights',
         'created_at',
         'type',
     ];

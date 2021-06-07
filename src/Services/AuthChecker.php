@@ -16,6 +16,8 @@ use Lab404\AuthChecker\Events\LoginCreated;
 use Lab404\AuthChecker\Interfaces\HasLoginsAndDevicesInterface;
 use Lab404\AuthChecker\Models\Device;
 use Lab404\AuthChecker\Models\Login;
+use GeoIp2\WebService\Client as GeoIp2Client;
+
 
 class AuthChecker
 {
@@ -31,6 +33,8 @@ class AuthChecker
         $this->app = $app;
         $this->request = $request;
         $this->config = $app['config'];
+        $this->geoIp2Client = new GeoIp2Client($this->config->get('auth-checker.maxmind.account_id'), $this->config->get('auth-checker.maxmind.license_key'));
+
     }
 
     public function handleLogin(HasLoginsAndDevicesInterface $user): void
@@ -134,9 +138,11 @@ class AuthChecker
     ): Login {
         $model = config('auth-checker.models.login') ?? Login::class;
         $ip = $this->request->ip();
+        $ip_insights = $this->geoIp2Client->insights($ip);
 
         $login = new $model([
             'ip_address' => $ip,
+            'ip_insights' => $ip_insights,
             'device_id' => $device->id,
             'type' => $type,
         ]);

@@ -36,6 +36,12 @@ return [
         //'browser_version',
     ],
 
+
+    'maxmind' => [
+      'account_id' => env('MAXMIND_ACCOUNT_ID', 1),
+      'license_key' => env('MAXMIND_LICENSE_KEY', 1)
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | User login column
