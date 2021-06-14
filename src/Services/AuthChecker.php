@@ -143,7 +143,6 @@ class AuthChecker
           $ip_insights = $this->geoIp2Client->insights($ip);
         } catch (\Exception $exception) {
           $ip_insights = [];
-          Log::error($exception);
         }
 
 
