@@ -33,7 +33,10 @@ return [
         # Ex: Chrome, Firefox, ...
         'browser',
         # Ex: 42.0.2311.135, 37.0, ...
-        //'browser_version',
+        'browser_version',
+        # Ex: device fingerprint
+        'fingerprint'
+
     ],
 
 

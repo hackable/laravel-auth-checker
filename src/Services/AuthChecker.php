@@ -103,8 +103,8 @@ class AuthChecker
         $device->browser = $agent->browser();
         $device->browser_version = $agent->version($device->browser);
         $device->is_desktop = $agent->isDesktop() ? true : false;
-        $device->is_mobile = $agent->isMobile() ? true : false;
         $device->language = count($agent->languages()) ? $agent->languages()[0] : null;
+        $device->fingerprint = $this->request->session()->get('fingerprint');
 
         $device->user()->associate($user);
 
@@ -216,8 +216,8 @@ class AuthChecker
             $matches += $device->browser_version === $agent->version($device->browser);
         }
 
-        if (in_array('language', $attributes)) {
-            $matches += $device->language === $agent->version($device->language);
+        if (in_array('fingerprint', $attributes)) {
+            $matches += $device->fingerprint === $this->request->session()->get('fingerprint');
         }
 
         return $matches === count($attributes);
@@ -229,6 +229,8 @@ class AuthChecker
             'platform',
             'platform_version',
             'browser',
+            'browser_version',
+            'fingerprint'
         ]);
     }
 

@@ -29,9 +29,7 @@ class Device extends Model
 {
     /** @var array $casts */
     protected $casts = [
-        'is_locked' => 'boolean',
         'is_desktop' => 'boolean',
-        'is_phone' => 'boolean',
     ];
     /** @var array $fillable */
     protected $fillable = [
@@ -40,9 +38,8 @@ class Device extends Model
         'browser',
         'browser_version',
         'is_desktop',
-        'is_phone',
-        'is_trusted',
-        'is_untrusted',
+        'fingerprint',
+        'is_trusted'
     ];
 
     public function logins(): HasMany

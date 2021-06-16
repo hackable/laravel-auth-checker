@@ -16,10 +16,9 @@ class CreateDevicesTable extends Migration
             $table->string('browser')->nullable();
             $table->string('browser_version')->nullable();
             $table->boolean('is_desktop')->default(0);
-            $table->boolean('is_mobile')->default(0);
             $table->string('language')->nullable();
+            $table->string('fingerprint')->nullable();
             $table->boolean('is_trusted')->default(0)->index();
-            $table->boolean('is_untrusted')->default(0)->index();
             $table->timestamps();
 
             // $table->index(['user_id', 'user_type']);
