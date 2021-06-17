@@ -106,7 +106,7 @@ class AuthChecker
         $device->is_desktop = $agent->isDesktop() ? true : false;
         $device->language = count($agent->languages()) ? $agent->languages()[0] : null;
         $device->fingerprint = $this->request->session()->get('fingerprint');
-        $device->pin = Random::generate(123, 6, 6);
+        $device->pin = Random::generate(1, 6, 6);
         $device->user()->associate($user);
 
         $device->save();
