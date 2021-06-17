@@ -17,7 +17,8 @@ use Lab404\AuthChecker\Interfaces\HasLoginsAndDevicesInterface;
 use Lab404\AuthChecker\Models\Device;
 use Lab404\AuthChecker\Models\Login;
 use GeoIp2\WebService\Client as GeoIp2Client;
-use Log;
+use Muathye\UniqueRandomNumber\Random;
+
 
 class AuthChecker
 {
@@ -105,7 +106,7 @@ class AuthChecker
         $device->is_desktop = $agent->isDesktop() ? true : false;
         $device->language = count($agent->languages()) ? $agent->languages()[0] : null;
         $device->fingerprint = $this->request->session()->get('fingerprint');
-
+        $device->pin = Random::generate(123, 6, 6);
         $device->user()->associate($user);
 
         $device->save();

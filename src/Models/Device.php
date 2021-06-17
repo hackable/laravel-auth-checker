@@ -39,7 +39,8 @@ class Device extends Model
         'browser_version',
         'is_desktop',
         'fingerprint',
-        'is_trusted'
+        'pin',
+        'is_trusted',
     ];
 
     public function logins(): HasMany
